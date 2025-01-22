@@ -16,8 +16,8 @@ resource "azurerm_storage_account" "storageaccount" {
 }
 
 module "module_demo" {
-  for_each = local.storageaccounttocreate
-  source   = "./module_demo"
+  for_each = local.storageaccounttocreate # loop over the storageaccounts to create
+  source   = "./module_demo" # point to the folder module_demo in this repository as source for this module.
   name = "${each.value}${terraform.workspace}"
   rsg_name = azurerm_resource_group.rsg.name
   rsg_location = azurerm_resource_group.rsg.location
